@@ -1,28 +1,33 @@
 <html>
-  <head>
-    <link rel="stylesheet" href="style.css" type="text/css">
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-  </head>
-  <body>
-    <h1>Website Directory</h1>
-    <div id="linkarea"></div>
-    <script
-    src="https://code.jquery.com/jquery-3.2.1.min.js"
-    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-    crossorigin="anonymous"></script>
+<head></head>
+<body>
+    <textarea style="width: 100%; height: 200px;" id="input">
+Put all of the text containing the emails here (literally do Ctrl A, Ctrl C, Ctrl V for the page which has the emails.
+    </textarea>
+<br><br>
+    <button id="button">Parse</button>
+<br><br>
+    <textarea style="width: 100%; height: 200px;" readonly id="output">
+    Emails show up here...
+    </textarea>
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script>
-		$(document).ready(function() {
-			$.get("https://api.github.com/users/blucheez/repos", function(data) {
-				//have an array of all of the repositories enabled
-                //go through each element and add a link if there's a pages
-                for(var i = 0; i < data.length; i++) {
-                    if(data[i].has_pages) {
-                        console.log("https://blucheez.github.io/" + data[i].name);
-                        $("#linkarea").append('<a href=https://blucheez.github.io/' + data[i].name + '>'+ data[i].name + '</a><br>');
-                    }
-                }
-            });
-		});
-	</script>
-  </body>
+$("#button").click(function(){
+    var str = $("#input").val();
+    
+    //process string here
+    
+    var arr = str.replace( /\n/g, " " ).split( " " );
+    var outstring = "";
+    for(var i = 0; i < arr.length; i++) {
+        if(arr[i].indexOf("@princeton.edu") != -1 && arr[i].indexOf("(") === -1) {
+            outstring = outstring + arr[i] + ", ";
+        }
+    }
+    outstring = outstring.substring(0, outstring.length - 2);
+    $("#output").empty();
+    $("#output").text(outstring);    
+});
+</script>
+</body>
 </html>
