@@ -20,7 +20,7 @@ $("#button").click(function(){
     var arr = str.replace( /\n/g, " " ).split( " " );
     var outstring = "";
     for(var i = 0; i < arr.length; i++) {
-        if(arr[i].indexOf("@princeton.edu") != -1 && arr[i].indexOf("(") === -1) {
+        if(arr[i].indexOf("@") != -1 && arr[i].indexOf("(") === -1) {
             outstring = outstring + arr[i] + ", ";
         }
     }
