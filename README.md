@@ -1,2 +1,2 @@
-# Home
-Central website linking to other Github Pages websites.
+# Link to site
+https://nathanalam.github.io/emailparser/
